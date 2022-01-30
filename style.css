@@ -1,3 +1,9 @@
+h1 {
+  text-align: center;
+  font-size: 100px;
+  
+}
+
 [data-row] {
   display: flex;
   justify-content: flex-start;
@@ -6,6 +12,8 @@
   margin: 25px;
   border: 1px solid lightgray;
 }
+
+
 
 .row {
   z-index: -10;
@@ -60,3 +68,26 @@
   font-size: 50px;
   text-align: center;
 }
+
+body {
+  margin-top: 250px;
+  background-image: url("forest.jpg");
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: stretch;
+}
+
+div {
+  color: black;
+  font-weight: 800;
+}
+
+button {
+  border: none;
+  background-color: white;
+  height: 30px;
+  width: auto;
+  font-size: larger;
+  font-weight: bold;
+} 

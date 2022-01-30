@@ -7,7 +7,7 @@
 // * Why are you get a warning in your console? Fix it.
 // * Delete these comment lines!
 
-const stone = null
+let stone = null
 
 // this function is called when a row is clicked. 
 // Open your inspector tool to see what is being captured and can be used.
@@ -17,15 +17,26 @@ const selectRow = (row) => {
   console.log("Yay, we clicked an item", row)
   console.log("Here is the stone's id: ", row.id)
   console.log("Here is the stone's data-size: ", currentRow)
-
-  pickUpStone(row.id)
+  if(row.lastElementChild && !stone) {
+    return pickUpStone(row.id)
+  } if(!row.lastElementChild && !stone) {
+    return console.log("there is no stone in hand or in row")
+  }
+  if(!row.lastElementChild && stone) {
+    return dropStone(row.id)  
+  }
+  if(row.lastElementChild.getAttribute("id") > stone.getAttribute("id")) {
+    return dropStone(row.id)
+  }
+  
 } 
 
 // this function can be called to get the last stone in the stack
 // but there might be something wrong with it...
 const pickUpStone = (rowID) => {
-  const selectedRow = document.getElementById(rowID);
-  stone = selectedRow.removeChild(selectedRow.lastChild);
+  let selectedRow = document.getElementById(rowID);
+  console.log(selectedRow);
+  stone = selectedRow.removeChild(selectedRow.lastElementChild);
   console.log(stone)
 }
 
@@ -33,10 +44,22 @@ const pickUpStone = (rowID) => {
 // Once you figure that out you'll need to figure out if its a legal move...
 // Something like: if(!stone){pickupStone} else{dropStone}
 
-const dropStone = (rowID, stone) => {
+const dropStone = (rowID) => {
   document.getElementById(rowID).appendChild(stone)
   stone = null
+  checkForWin()
 }
 
 // * Remember you can use your logic from 'main.js' to maintain the rules of the game. But how? Follow the flow of data just like falling dominoes.
+
+function checkForWin() {
+  if(document.getElementById("top-row").childElementCount == 4) {
+    // return console.log("You Won")
+    alert("You've Won")
+    document.getElementById("wonMessage").innerHTML
+  } else {
+    return console.log("Next Move")
+  }
+  
+}
 
