@@ -63,3 +63,16 @@ function checkForWin() {
   
 }
 
+const resetGame = () => {
+  console.log("the game was reset")
+  const towers = getElementByTagName("div")
+  for (i =0; i < towers.length; i++) {
+    console.log(towers[i]) 
+    towers[i].innerHTML= null
+  let stacks = {
+    a: [4, 3, 2, 1],
+    b: [],
+    c: []
+};
+}
+}
